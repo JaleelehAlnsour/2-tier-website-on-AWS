@@ -50,6 +50,7 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 yum update -y
 yum install -y httpd php
 systemctl enable httpd
+```bash
 
 ---
 
