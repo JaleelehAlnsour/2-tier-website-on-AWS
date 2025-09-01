@@ -13,22 +13,18 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 ## 2. VPC & Networking
 1. **Create VPC**  
    - CIDR: `10.0.0.0/16`  
-
 2. **Create Subnets**  
    - Public (Web): `10.0.1.0/24`  
    - Private (DB): `10.0.2.0/24`  
-
 3. **Internet Gateway**  
    - Attach to VPC  
-
 4. **Route Tables**  
    - Public subnet: `0.0.0.0/0` → Internet Gateway  
    - Private subnet: no internet (or NAT Gateway if needed)  
-
 5. **Security Groups**  
    - Web SG: Inbound `HTTP(80)`, `SSH(22)` from your IP  
    - DB SG: Inbound `MySQL(3306)` from Web SG
-     
+  
 ---
 
 ## 3. EC2 – Web Tier
@@ -74,18 +70,14 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 ---
 
 ## 6. Application Load Balancer (ALB)
-
 1. **Create ALB**  
    - Internet-facing, in public subnets  
-
 2. **Security Group**  
    - Allow inbound `HTTP(80)`  
-
 3. **Target Group**  
    - Type: Instances  
    - Protocol: HTTP 80  
    - Register EC2 instances  
-
 4. **Listener**  
    - HTTP 80 → Target Group  
 
@@ -106,19 +98,7 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
   - Scale out if CPU > 70%  
   - Scale in if CPU < 30%  
 
----
-
-## 8. Monitoring & Alarms
-- **CloudWatch:** Monitor EC2 CPU, RDS CPU, ALB 5xx errors  
-- **Optional IAM Role:** Grant EC2 access to S3 or other AWS services  
-
-**Example Alarms:**  
-- EC2 CPU > 80%  
-- RDS CPU > 70%  
-- ALB HTTP 5xx errors > threshold  
-
----
 
 ## 9. Verification
-1. Open browser → `http://ALB-DNS`  
+1. Open browser 
 2. Verify page shows: *“Welcome to 2-Tier Website”*  
