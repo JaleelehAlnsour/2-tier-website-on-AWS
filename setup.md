@@ -4,7 +4,7 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 ---
 
 ## 1. Prerequisites
-- AWS account with proper permissions (EC2, RDS, VPC, ALB, Auto Scaling, CloudWatch)  
+- AWS account with proper permissions (EC2, RDS, VPC, ALB, Auto Scaling)  
 - Key pair for EC2 SSH access  
 - Domain name (optional)  
 
