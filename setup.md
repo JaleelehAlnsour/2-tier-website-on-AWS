@@ -44,6 +44,13 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 - **Auto-assign Public IP:** Yes  
 
 **User Data Script (Linux)**
+
+**```bash**
+**#!/bin/bash**
+yum update -y
+yum install -y httpd php
+systemctl enable httpd
+
 ---
 
 ## 4. RDS – Database Tier
