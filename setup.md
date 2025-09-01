@@ -1,11 +1,9 @@
 # 2-Tier Website Deployment on AWS
-
 This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, including networking, EC2 web tier, RDS database tier, ALB, auto-scaling, and security configurations.
 
 ---
 
 ## 1. Prerequisites
-
 - AWS account with proper permissions (EC2, RDS, VPC, ALB, Auto Scaling, CloudWatch)  
 - Key pair for EC2 SSH access  
 - Domain name (optional)  
@@ -13,7 +11,6 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 ---
 
 ## 2. VPC & Networking
-
 1. **Create VPC**  
    - CIDR: `10.0.0.0/16`  
 
@@ -45,18 +42,16 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 
 **User Data Script (Linux)**
 
-
   #!/bin/bash  
   yum update -y  
   yum install -y httpd php  
-  systemctl enable httpd
-  systemctl start httpd
-  echo "<h1>Welcome to 2-Tier Website</h1>" > /var/www/html/index.html
+  systemctl enable httpd  
+  systemctl start httpd  
+  echo "<h>Welcome to 2-Tier Website</h>" > /var/www/html/index.html  
 
 ---
 
 ## 4. RDS – Database Tier
-
 - **Engine:** MySQL / PostgreSQL  
 - **Instance Type:** `db.t3.micro`  
 - **Storage:** 20 GB (GP2 SSD)  
@@ -72,7 +67,6 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 ---
 
 ## 5. Application Configuration
-
 - Connect Web server to RDS using the endpoint:  
   `mydb.xxxxxxx.us-east-1.rds.amazonaws.com`  
 - Use database credentials defined above.  
@@ -98,10 +92,10 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 ---
 
 ## 7. Auto Scaling
-
 - **Launch Template:** Use same AMI & Security Group as Web EC2  
 
-- **Auto Scaling Group (ASG):**  
+- **Auto Scaling Group (ASG):**
+  **Example**
   - Subnets: Public  
   - Desired: 2  
   - Min: 1  
@@ -115,7 +109,6 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 ---
 
 ## 8. Monitoring & Alarms
-
 - **CloudWatch:** Monitor EC2 CPU, RDS CPU, ALB 5xx errors  
 - **Optional IAM Role:** Grant EC2 access to S3 or other AWS services  
 
@@ -127,7 +120,5 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 ---
 
 ## 9. Verification
-
 1. Open browser → `http://ALB-DNS`  
 2. Verify page shows: *“Welcome to 2-Tier Website”*  
-3. Optional: Test DB connection with PHP script
