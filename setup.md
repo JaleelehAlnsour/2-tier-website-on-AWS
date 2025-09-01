@@ -45,11 +45,11 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 
 **User Data Script (Linux)**
 
-**```bash**
+**bash**
 **#!/bin/bash**
-yum update -y
-yum install -y httpd php
-systemctl enable httpd
+**yum update -y**
+**yum install -y httpd php**
+**systemctl enable httpd**
 
 ---
 
@@ -129,9 +129,3 @@ systemctl enable httpd
 1. Open browser → `http://ALB-DNS`  
 2. Verify page shows: *“Welcome to 2-Tier Website”*  
 3. Optional: Test DB connection with PHP script
-
-
-
-
-systemctl start httpd
-echo "<h1>Welcome to 2-Tier Website</h1>" > /var/www/html/index.html
