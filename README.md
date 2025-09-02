@@ -6,7 +6,7 @@ This project demonstrates the deployment of a scalable **2-Tier Web Application*
 
 ## Architecture
 
-![Architecture Diagram](architecture.png)  
+![Architecture Diagram](Architecture.png)  
 
 
 ## Tools & Services
