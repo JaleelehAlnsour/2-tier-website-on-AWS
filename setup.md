@@ -1,12 +1,12 @@
 # 2-Tier Website Deployment on AWS
-This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, including networking, EC2 web tier, RDS database tier, ALB, auto-scaling, and security configurations.
+This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, including networking, EC2 web tier, RDS database tier, ALB, auto-scaling, and Route 53.
 
 ---
 
 ## 1. Prerequisites
-- AWS account with proper permissions (EC2, RDS, VPC, ALB, Auto Scaling)  
+- AWS account with proper permissions (EC2, RDS, VPC, ALB, Auto Scaling, Route 53)  
 - Key pair for EC2 SSH access  
-- Domain name (optional)  
+- Domain name (Route 53)  
 
 ---
 
@@ -28,9 +28,8 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 ---
 
 ## 3. EC2 – Web Tier
-
 - **Instance Type:** `t3.micro` 
-- **AMI:** Amazon Linux 2 / Ubuntu  
+- **AMI:** Amazon Linux 2 
 - **Key Pair:** Use existing key  
 - **Security Group:** Web SG  
 - **Subnet:** Public subnet  
@@ -43,12 +42,12 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
   yum install -y httpd php  
   systemctl enable httpd  
   systemctl start httpd  
-  echo "<h>Welcome to 2-Tier Website</h>" > /var/www/html/index.html  
+  echo "<h1>Welcome to 2-Tier Website</h1>" > /var/www/html/index.html  
 
 ---
 
 ## 4. RDS – Database Tier
-- **Engine:** MySQL / PostgreSQL  
+- **Engine:** MySQL 
 - **Instance Type:** `db.t3.micro`  
 - **Storage:** 20 GB (GP2 SSD)  
 - **VPC:** Same VPC  
@@ -56,7 +55,7 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 - **Security Group:** DB SG  
 - **Database Name:** `mydb`  
 - **Master Username:** `admin`  
-- **Master Password:** `ChangeMe123!`  
+- **Master Password:** `Password123!`  
 
 > DB should be private; accessible only from Web Tier.
 
@@ -87,7 +86,6 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 - **Launch Template:** Use same AMI & Security Group as Web EC2  
 
 - **Auto Scaling Group (ASG):**
-  **Example**
   - Subnets: Public  
   - Desired: 2  
   - Min: 1  
@@ -96,9 +94,21 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 
 - **Scaling Policy:**  
   - Scale out if CPU > 70%  
-  - Scale in if CPU < 30%  
+  - Scale in if CPU < 30%
+  
+---
 
+## 8. Route 53
+1.  Create Hosted Zone for your domain.
+2.  Add Record
+     Type: A or CNAME
+     Target: ALB DNS name
+3. Wait for DNS propagation (~minutes)
+4. Access your website using the domain name
+  
+---
 
 ## 9. Verification
-1. Open browser 
-2. Verify page shows: *“Welcome to 2-Tier Website”*  
+1. Open browser → go to your domain (Route 53)
+2. Verify page shows: “Welcome to 2-Tier Website”
+
