@@ -53,3 +53,5 @@ This project demonstrates the deployment of a scalable **2-Tier Web Application*
 - Provided a **professional domain** accessible globally via Route 53.  
 - Applied **AWS Well-Architected best practices** for security, scalability, reliability, and performance.  
 
+## Documentation
+For the technical step-by-step setup guide, see [SETUP.md](SETUP.md).
