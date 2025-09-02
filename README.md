@@ -54,4 +54,4 @@ This project demonstrates the deployment of a scalable **2-Tier Web Application*
 - Applied **AWS Well-Architected best practices** for security, scalability, reliability, and performance.  
 
 ## Documentation
-For the technical step-by-step setup guide, see [setup.md](setup.md).
+For the technical step-by-step setup guide, see [setup.md](SETUP.md).
