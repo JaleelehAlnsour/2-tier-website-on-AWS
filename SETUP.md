@@ -37,7 +37,7 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 
 **User Data Script (Linux)**
 
-  #!/bin/bash  
+  ```bash 
   yum update -y  
   yum install -y httpd php  
   systemctl enable httpd  
