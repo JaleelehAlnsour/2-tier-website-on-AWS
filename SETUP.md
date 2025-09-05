@@ -111,5 +111,9 @@ This guide provides a step-by-step process to deploy a 2-Tier Website on AWS, in
 
 ## 9. Verification
 1. Open browser → go to your domain (Route 53)
+<<<<<<< HEAD
 2. Verify page shows: “Welcome to 2-Tier Website”
 
+=======
+2. Verify page shows: “Welcome to 2-Tier Website”
+>>>>>>> ba89085 (Save current changes before pull)
